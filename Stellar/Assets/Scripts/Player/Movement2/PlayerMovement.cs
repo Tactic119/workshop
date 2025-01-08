@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public float slideSpeed;
+    public float wallrunspeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -61,12 +62,14 @@ public class PlayerMovement : MonoBehaviour
     {
         walking,
         sprinting,
+        wallrunning,
         crouching,
         sliding,
         air
     }
 
     public bool sliding;
+    public bool wallrunning;
 
     private void Start()
     {
@@ -94,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
         else
             rb.drag = 0;
 
-        Debug.Log(moveSpeed);
     }
 
     private void FixedUpdate()
@@ -133,6 +135,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        // Mode - Wallrunning
+        if (wallrunning)
+        {
+            state = MovementState.wallrunning;
+            desiredMoveSpeed = wallrunspeed;
+        }
+
         // Mode - Sliding
         if(sliding)
         {
