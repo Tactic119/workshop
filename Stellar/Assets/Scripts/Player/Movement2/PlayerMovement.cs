@@ -65,11 +65,15 @@ public class PlayerMovement : MonoBehaviour
         wallrunning,
         crouching,
         sliding,
-        air
+        air,
+        hovering,
+        flying
     }
 
     public bool sliding;
     public bool wallrunning;
+    public bool hovering;
+    public bool flying;
 
     private void Start()
     {
@@ -135,6 +139,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        // Mode - Hovering
+        if (hovering)
+        {
+            state = MovementState.hovering;
+            moveSpeed = 6f;
+        }
+
+        // Mode - Flying
+        if (flying)
+        {
+            state = MovementState.flying;
+            desiredMoveSpeed = 30f;
+        }    
+
         // Mode - Wallrunning
         if (wallrunning)
         {
@@ -244,8 +262,8 @@ public class PlayerMovement : MonoBehaviour
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
-        // trun gravity off while on sloep
-        rb.useGravity = !OnSlope();
+        // trun gravity off while on slope
+        if(!wallrunning) rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
