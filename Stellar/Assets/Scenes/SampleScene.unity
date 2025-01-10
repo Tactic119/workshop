@@ -774,7 +774,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa58a4e6478c6fa4db6c5d4bdc1b40d8, type: 2}
+  - {fileID: 2100000, guid: a437dbc20583b704cba59883aa231bb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1957,7 +1957,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa58a4e6478c6fa4db6c5d4bdc1b40d8, type: 2}
+  - {fileID: 2100000, guid: a437dbc20583b704cba59883aa231bb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2964,8 +2964,8 @@ Transform:
   m_GameObject: {fileID: 702050795}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10.8544, y: -12.4846, z: -13.93}
-  m_LocalScale: {x: 35.10429, y: 1.324795, z: 7.4706}
+  m_LocalPosition: {x: -1.5363, y: -9.92, z: -33}
+  m_LocalScale: {x: 66.79644, y: 1.324795, z: 21.940405}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2137019021}
@@ -3011,7 +3011,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74370a8848e851b4f9b961d6747f1e27, type: 2}
+  - {fileID: 2100000, guid: f3d2c145f8a38f54e9fe1a90347cd27e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3746,8 +3746,8 @@ Transform:
   m_GameObject: {fileID: 830830327}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 30.06, y: -13.2295, z: -20.93}
-  m_LocalScale: {x: 14.271599, y: 0.92781776, z: 8.7612}
+  m_LocalPosition: {x: -0.7609, y: -10.1388, z: -23.75}
+  m_LocalScale: {x: 75.91349, y: 0.92781776, z: 20.357824}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2137019021}
@@ -3793,7 +3793,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 74370a8848e851b4f9b961d6747f1e27, type: 2}
+  - {fileID: 2100000, guid: f3d2c145f8a38f54e9fe1a90347cd27e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6648,7 +6648,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 90
   orthographic: 0
@@ -7388,7 +7388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.87
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7396,23 +7396,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -18.89
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6034184
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.79742473
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7420,7 +7420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -105.77
       objectReference: {fileID: 0}
     - target: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -7594,8 +7594,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   wallRunForce: 200
-  wallJumpUpForce: 10
-  wallJumpSideForce: 40
+  wallJumpUpForce: 15
+  wallJumpSideForce: 100
   wallClimbSpeed: 3
   maxWallRunTime: 1.5
   jumpKey: 32
