@@ -6,7 +6,9 @@ public class Flying : MonoBehaviour
 {
 
     [Header("Flying")]
-
+    public bool hovering;
+    public bool soaring;
+    public bool airBorne;
 
 
     [Header("References")]
@@ -27,5 +29,21 @@ public class Flying : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void takeOff()
+    {
+        airBorne = true;
+        rb.useGravity = false;
+    }
+
+    public void startSoar()
+    {
+
+    }
+
+    public void disengage()
+    {
+
     }
 }

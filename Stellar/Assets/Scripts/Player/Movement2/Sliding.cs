@@ -10,6 +10,7 @@ public class Sliding : MonoBehaviour
     public Transform playerObj;
     private Rigidbody rb;
     private PlayerMovement pm;
+    public Flying flying;
 
     [Header("Sliding")]
     public float maxSlideTime;
@@ -24,6 +25,8 @@ public class Sliding : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
+
+
     
 
     private void Start()
@@ -32,6 +35,8 @@ public class Sliding : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
 
         startYScale = playerObj.localScale.y;
+
+        flying = GetComponent<Flying>();
     }
 
     private void Update()
@@ -39,7 +44,7 @@ public class Sliding : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
+        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0) && !flying.airBorne)
             StartSlide();
 
         if (Input.GetKeyUp(slideKey) && pm.sliding)

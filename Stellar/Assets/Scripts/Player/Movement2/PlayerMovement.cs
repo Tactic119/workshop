@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     public MovementState state;
+    public Flying flying;
 
     public enum MovementState
     {
@@ -72,8 +74,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool sliding;
     public bool wallrunning;
-    public bool hovering;
-    public bool flying;
+
+    public float takeOffTimer;
+
+
 
     private void Start()
     {
@@ -83,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+
+        flying = GetComponent<Flying>();
 
     }
 
@@ -101,6 +107,13 @@ public class PlayerMovement : MonoBehaviour
         else
             rb.drag = 0;
 
+        if (takeOffTimer > 0)
+        {
+            takeOffTimer -= Time.deltaTime;
+        }
+
+        
+
     }
 
     private void FixedUpdate()
@@ -113,18 +126,29 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        // take off
+        if (takeOffTimer > 0 && takeOffTimer <= 0.6f && Input.GetKey(KeyCode.Space) && !flying.airBorne)
+        {
+            Debug.Log("Take Off");
+            flying.takeOff();
+            state = MovementState.hovering;
+
+        }
+
         // when to jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded && takeOffTimer <= 0 && !flying.airBorne)
         {
             readyToJump = false;
 
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+
+            takeOffTimer = 0.8f;
         }
 
         // start crouching
-        if(Input.GetKeyDown(crouchKey))
+        if(Input.GetKeyDown(crouchKey) && !flying.airBorne)
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
@@ -139,19 +163,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        // Mode - Hovering
-        if (hovering)
-        {
-            state = MovementState.hovering;
-            moveSpeed = 6f;
-        }
-
-        // Mode - Flying
-        if (flying)
-        {
-            state = MovementState.flying;
-            desiredMoveSpeed = 30f;
-        }    
 
         // Mode - Wallrunning
         if (wallrunning)
@@ -173,14 +184,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Mode - Crouching
-        else if(Input.GetKey(crouchKey))
+        else if(Input.GetKey(crouchKey) && !flying.airBorne)
         {
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
         }
 
         // Mode - Sprinting
-        else if(grounded && Input.GetKey(sprintKey))
+        else if(grounded && Input.GetKey(sprintKey) && !flying.airBorne)
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
