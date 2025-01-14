@@ -8,14 +8,14 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed;
+    public float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
     public float slideSpeed;
     public float wallrunspeed;
 
-    private float desiredMoveSpeed;
-    private float lastDesiredMoveSpeed;
+    public float desiredMoveSpeed;
+    public float lastDesiredMoveSpeed;
 
     public float speedIncreaseMultiplier;
     public float slopeIncreaseMultiplier;
@@ -58,8 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
-    public MovementState state;
-    public Flying flying;
+    
 
     public enum MovementState
     {
@@ -76,7 +75,11 @@ public class PlayerMovement : MonoBehaviour
     public bool sliding;
     public bool wallrunning;
 
-    public float takeOffTimer;
+    [Header("Flying")]
+    public MovementState state;
+    public Flying flying;
+    public float hoveringDrag;
+    public float startHoverCooldown;
 
 
 
@@ -104,17 +107,18 @@ public class PlayerMovement : MonoBehaviour
         StateHandler();
 
         // handle drag
-        if (grounded && !flying.airBorne)
+        if (grounded)
             rb.drag = groundDrag;
-        else
+        else if(flying.hovering == true)
+            rb.drag = hoveringDrag;
+        else 
             rb.drag = 0;
-
-        if (takeOffTimer > 0)
+        
+        if(startHoverCooldown > 0)
         {
-            takeOffTimer -= Time.deltaTime;
+            startHoverCooldown -= Time.deltaTime;
         }
 
-        
 
     }
 
@@ -129,21 +133,21 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // take off
-        if (takeOffTimer > 0 && takeOffTimer <= 0.6f && Input.GetKey(KeyCode.Space) && !flying.airBorne)
+        if (Input.GetKey(KeyCode.F) && !flying.airBorne && grounded == false && wallrunning == false && startHoverCooldown <= 0)
         {
-            Debug.Log("Take Off Input");
+            Debug.Log("Take Off");
             state = MovementState.hovering;
             flying.hovering = true;
             flying.airBorne = true;
-            moveSpeed = 0f;
-            desiredMoveSpeed = 0f;
+            desiredMoveSpeed = flying.hoverSpeed;
             grounded = false;
+            startHoverCooldown = 0.2f;
             flying.TakeOff();
 
         }
 
         // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded && takeOffTimer <= 0 && !flying.airBorne)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded && !flying.airBorne)
         {
             readyToJump = false;
 
@@ -151,7 +155,6 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
 
-            takeOffTimer = 0.8f;
         }
 
         // start crouching
@@ -280,9 +283,9 @@ public class PlayerMovement : MonoBehaviour
         else if(!grounded && flying.airBorne == false)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
-        else if(flying.airBorne == true && flying.hovering == true)
+        else if(flying.airBorne == true && flying.airBorne == true)
         {
-            Debug.Log("hover movement");
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
 
         // trun gravity off while on slope
