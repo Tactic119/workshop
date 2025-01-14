@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
    [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGrounded;
-    bool grounded;
+    public bool grounded;
 
     [Header("Slpe Handling")]
     public float maxSlopeAngle;
@@ -95,14 +96,15 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGrounded);
+        if (flying.airBorne == false) grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGrounded);
+        else grounded = false;
 
         MyInput();
         SpeedControl();
         StateHandler();
 
         // handle drag
-        if (grounded)
+        if (grounded && !flying.airBorne)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -129,9 +131,14 @@ public class PlayerMovement : MonoBehaviour
         // take off
         if (takeOffTimer > 0 && takeOffTimer <= 0.6f && Input.GetKey(KeyCode.Space) && !flying.airBorne)
         {
-            Debug.Log("Take Off");
-            flying.takeOff();
+            Debug.Log("Take Off Input");
             state = MovementState.hovering;
+            flying.hovering = true;
+            flying.airBorne = true;
+            moveSpeed = 0f;
+            desiredMoveSpeed = 0f;
+            grounded = false;
+            flying.TakeOff();
 
         }
 
@@ -198,14 +205,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Mode - Walking
-        else if (grounded)
+        else if (grounded && !flying.airBorne)
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
         }
 
         // Mode - Air
-        else
+        else if(!flying.airBorne) 
         {
             state = MovementState.air;
         }
@@ -270,11 +277,16 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         // in air
-        else if(!grounded)
+        else if(!grounded && flying.airBorne == false)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
+        else if(flying.airBorne == true && flying.hovering == true)
+        {
+            Debug.Log("hover movement");
+        }
+
         // trun gravity off while on slope
-        if(!wallrunning) rb.useGravity = !OnSlope();
+        if(!wallrunning && flying.airBorne == false) rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()

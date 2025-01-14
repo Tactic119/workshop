@@ -9,6 +9,7 @@ public class Flying : MonoBehaviour
     public bool hovering;
     public bool soaring;
     public bool airBorne;
+    public float startUpBoost;
 
 
     [Header("References")]
@@ -23,27 +24,44 @@ public class Flying : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void takeOff()
+    public void TakeOff()
     {
-        airBorne = true;
         rb.useGravity = false;
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.AddForce(Vector3.up * 1000f, ForceMode.Force);
+
+        Debug.Log("take off function ran");
     }
 
-    public void startSoar()
+    private void MyInput()
     {
 
     }
 
-    public void disengage()
+    public void startSoar() // hovering to soar
     {
 
     }
+
+    public void stopSoar() // soar to hovering
+    {
+
+    }
+
+    public void disengage() // stop flying
+    {
+
+    }
+
+    
 }

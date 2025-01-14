@@ -63,7 +63,7 @@ public class WallRunning : MonoBehaviour
     private void FixedUpdate()
     {
         if (pm.wallrunning)
-            WallRunningMOvement();
+            WallRunningMovement();
     }
 
     private void CheckForWall()
@@ -142,7 +142,7 @@ public class WallRunning : MonoBehaviour
         if (wallRight) cam.DoTilt(5f);
     }
 
-    private void WallRunningMOvement()
+    private void WallRunningMovement()
     {
         rb.useGravity = useGravity;
 
