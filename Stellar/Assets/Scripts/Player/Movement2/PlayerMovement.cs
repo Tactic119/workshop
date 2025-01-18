@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speedIncreaseMultiplier;
     public float slopeIncreaseMultiplier;
+    public float soarIncreaseMultiuplier;
 
     public float groundDrag;
 
@@ -50,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private bool exitingSlope;
 
     public Transform orientation;
+    public Transform orientationSoaring;
 
     float horizontalInput;
     float verticalInput;
@@ -59,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     
+
 
     public enum MovementState
     {
@@ -80,7 +84,13 @@ public class PlayerMovement : MonoBehaviour
     public Flying flying;
     public float hoveringDrag;
     public float startHoverCooldown;
+    public float counter;
 
+    private GameObject wingsuit;
+    public Anim anim;
+
+    public GameObject playerModel;
+    public GameObject camHolder;
 
 
     private void Start()
@@ -93,6 +103,11 @@ public class PlayerMovement : MonoBehaviour
         startYScale = transform.localScale.y;
 
         flying = GetComponent<Flying>();
+
+        wingsuit = GameObject.FindGameObjectWithTag("Wingsuit");
+        anim = wingsuit.GetComponent<Anim>();
+        playerModel = GameObject.FindGameObjectWithTag("PlayerModel");
+        camHolder = GameObject.FindGameObjectWithTag("CameraHolder");
 
     }
 
@@ -119,7 +134,17 @@ public class PlayerMovement : MonoBehaviour
             startHoverCooldown -= Time.deltaTime;
         }
 
+        if (flying.soaring)
+        {
+            if(counter <= 0)
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                counter = 0.2f;
+            }
+            else counter -= Time.deltaTime;
 
+
+        }
     }
 
     private void FixedUpdate()
@@ -135,7 +160,6 @@ public class PlayerMovement : MonoBehaviour
         // take off
         if (Input.GetKey(KeyCode.F) && !flying.airBorne && grounded == false && wallrunning == false && startHoverCooldown <= 0)
         {
-            Debug.Log("Take Off");
             state = MovementState.hovering;
             flying.hovering = true;
             flying.airBorne = true;
@@ -143,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
             startHoverCooldown = 0.2f;
             flying.TakeOff();
+            anim.TakeOffAnim();
 
         }
 
@@ -169,6 +194,8 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
+
+        
     }
 
     private void StateHandler()
@@ -252,8 +279,11 @@ public class PlayerMovement : MonoBehaviour
 
                 time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
             }
-            else
-                time += Time.deltaTime * speedIncreaseMultiplier;
+            else if (flying.soaring)
+            {
+                time += Time.deltaTime * soarIncreaseMultiuplier;
+            }
+                else time += Time.deltaTime * speedIncreaseMultiplier;
 
             yield return null;
         }
@@ -264,7 +294,11 @@ public class PlayerMovement : MonoBehaviour
     private void MovePLayer()
     {
         // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        if(flying.soaring)
+        {
+            moveDirection = orientationSoaring.forward * verticalInput + orientation.right * horizontalInput;
+        }
+        else moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // on slope
         if( OnSlope() && !exitingSlope)
@@ -283,9 +317,13 @@ public class PlayerMovement : MonoBehaviour
         else if(!grounded && flying.airBorne == false)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
-        else if(flying.airBorne == true && flying.airBorne == true)
+        else if(flying.airBorne == true && flying.hovering == true)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+        else if(flying.airBorne && flying.soaring)
+        {
+            rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
         }
 
         // trun gravity off while on slope

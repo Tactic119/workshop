@@ -19,15 +19,17 @@ public class Flying : MonoBehaviour
     public float soarSpeed;
     public float hoverSpeed;
 
+    private GameObject wingsuit;
+    public Anim anim;
 
-    
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
-        
-        
+
+        wingsuit = GameObject.FindGameObjectWithTag("Wingsuit");
+        anim = wingsuit.GetComponent<Anim>();
     }
 
     // Update is called once per frame
@@ -89,7 +91,7 @@ public class Flying : MonoBehaviour
         hovering = false;
         soaring = true;
         soarBuffer = 0.2f;
-        Debug.Log("Start Soar");
+        anim.SetSoarState(1);
     }
 
     public void stopSoar() // soar to hovering
@@ -98,7 +100,7 @@ public class Flying : MonoBehaviour
         hovering = true;
         soaring = false;
         soarBuffer = 0.2f;
-        Debug.Log("Stop Soar");
+        anim.SetSoarState(2);
 
     }
 
@@ -110,7 +112,9 @@ public class Flying : MonoBehaviour
         soaring = false;
         airBorne = false;
         pm.startHoverCooldown = 0.2f;
-        Debug.Log("Disengage");
+        anim.DisengageAnim();
+        anim.direction = 0;
+        anim.SetSoarState(2);
 
     }
 
