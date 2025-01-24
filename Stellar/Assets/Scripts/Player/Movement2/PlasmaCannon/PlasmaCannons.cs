@@ -10,7 +10,9 @@ public class PlasmaCannons : MonoBehaviour
     public GameObject targetFinder;
     public Transform ProjectileSpawn;
     public float shootCoolDown;
-    public Transform target;
+    public GameObject target;
+    public GameObject plasmaMissile;
+    public Transform PMSpawn;
 
 
     void Start()
@@ -33,6 +35,14 @@ public class PlasmaCannons : MonoBehaviour
             launchTimer -= Time.deltaTime;
         if (shootCoolDown > 0)
             shootCoolDown -= Time.deltaTime;
+
+        if(readyToFire && launchTimer <= 0)
+        {
+            LaunchMissile();
+            readyToFire = false;
+        }
+
+        //Debug.Log(target);
     }
 
     public void FindTarget()
@@ -44,6 +54,6 @@ public class PlasmaCannons : MonoBehaviour
 
     public void LaunchMissile()
     {
-        //Instantiate
+        Instantiate(plasmaMissile, PMSpawn.position, Quaternion.identity);
     }
 }

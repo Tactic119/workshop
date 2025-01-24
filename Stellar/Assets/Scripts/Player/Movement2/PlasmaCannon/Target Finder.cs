@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -8,12 +9,14 @@ using UnityEngine.InputSystem.HID;
 
 public class TargetFinder : MonoBehaviour
 {
-    public Transform target;
+    public GameObject target;
     public Rigidbody rb;
     public Transform ProjectileSpawn;
     private Vector3 direction;
     public GameObject player;
     public PlasmaCannons connons;
+    public int speed;
+    private bool moving;
 
     void Start()
     {
@@ -24,26 +27,37 @@ public class TargetFinder : MonoBehaviour
         connons = player.GetComponent<PlasmaCannons>();
 
         direction = ProjectileSpawn.transform.forward;
+
+        moving = true;
     }
 
     
     void Update()
     {
-        rb.AddForce(direction.normalized * 500f, ForceMode.Force);
+        if(moving) rb.AddForce(direction.normalized * speed, ForceMode.Force);
     }
 
     public void OnTriggerEnter(Collider other)
     {
+        moving = false;
+
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
 
 
         }
-        else { Debug.Log("miss");  }
+        else 
+        { 
+            //Debug.Log("miss"); 
+        }
 
-        target = GetComponent<Transform>();
+        speed = 0;
+
+        Instantiate(target, transform.position, Quaternion.identity);
+
         connons.target = target;
+
         Destroy(gameObject);
 
     }

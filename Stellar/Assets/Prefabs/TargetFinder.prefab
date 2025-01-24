@@ -77,11 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6e9d2e967496445902fd73ea2751fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 2461193979626768044, guid: c5bf74db9a8b4b94e8d19570bba4a80b, type: 3}
   rb: {fileID: 0}
   ProjectileSpawn: {fileID: 0}
   player: {fileID: 0}
   connons: {fileID: 0}
+  speed: 50
 --- !u!54 &7775486949289903766
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5410573003468269744}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
