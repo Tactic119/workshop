@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGrounded;
     public bool grounded;
 
-    [Header("Slpe Handling")]
+    [Header("Slope Handling")]
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
     private bool exitingSlope;
