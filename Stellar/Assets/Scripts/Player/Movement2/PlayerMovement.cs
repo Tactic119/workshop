@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
@@ -61,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+
+
+
+
+    public AudioClip ac;
     
 
 
@@ -109,6 +115,9 @@ public class PlayerMovement : MonoBehaviour
         playerModel = GameObject.FindGameObjectWithTag("PlayerModel");
         camHolder = GameObject.FindGameObjectWithTag("CameraHolder");
 
+
+
+        
     }
 
     private void Update()
