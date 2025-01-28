@@ -9,6 +9,8 @@ TagManager:
   - CameraHolder
   - ProjectileSpawn
   - Enemy
+  - Target
+  - pewpew
   layers:
   - Default
   - TransparentFX

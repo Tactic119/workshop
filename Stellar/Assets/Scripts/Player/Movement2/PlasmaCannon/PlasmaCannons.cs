@@ -28,7 +28,7 @@ public class PlasmaCannons : MonoBehaviour
             FindTarget();
             readyToFire = true;
             launchTimer = 0.5f;
-            shootCoolDown = 5f;
+            shootCoolDown = 2f;
         }
 
         if(launchTimer > 0)

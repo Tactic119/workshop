@@ -40,24 +40,9 @@ public class TargetFinder : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         moving = false;
-
-        if (other.gameObject.tag == "Enemy")
-        {
-            //Debug.Log("hit");
-
-
-        }
-        else 
-        { 
-            //Debug.Log("miss"); 
-        }
-
-        speed = 0;
-
+        rb.velocity = new Vector3(0, 0, 0);
         Instantiate(target, transform.position, Quaternion.identity);
-
         connons.target = target;
-
         Destroy(gameObject);
 
     }

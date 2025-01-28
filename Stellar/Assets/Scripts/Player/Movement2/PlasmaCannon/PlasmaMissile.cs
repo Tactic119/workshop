@@ -14,20 +14,23 @@ public class PlasmaMissile : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         connons = player.GetComponent<PlasmaCannons>();
 
-        target = connons.target;
+        target = GameObject.FindGameObjectWithTag("Target");
     }
 
     
     void Update()
     {
-        if (target != null) moveMissile();
+        if (target != null) 
+            moveMissile();
+
+        target = GameObject.FindGameObjectWithTag("Target");
     }
 
     public void moveMissile()
     {
         transform.LookAt(target.transform.position);
 
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 25f * Time.deltaTime);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -40,6 +43,7 @@ public class PlasmaMissile : MonoBehaviour
         {
             //Debug.Log("complete miss");
         }
+
         Destroy(gameObject);
 
     }
