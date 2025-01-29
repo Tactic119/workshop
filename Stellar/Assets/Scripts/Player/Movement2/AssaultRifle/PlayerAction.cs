@@ -5,10 +5,15 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     [SerializeField]
-    private Gun Gun;
+    private Gun gun;
 
-    public void OnShoot()
+    public void Update()
     {
-        Gun.Shoot();
+        
+        if(Input.GetMouseButton(0))
+        {
+            gun.Shoot();
+        }
+        
     }
 }
