@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField]
-    private bool AddBulletSpread = false;
+    private bool AddBulletSpread;
     [SerializeField]
     private Vector3 BulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
     [SerializeField]
@@ -23,7 +23,7 @@ public class Gun : MonoBehaviour
     private LayerMask Mask;
 
     private Animator Animator;
-    private float LastSHootTime;
+    private float LastShootTime;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (LastSHootTime + ShootDelay < Time.time)
+        if (LastShootTime + ShootDelay < Time.time)
         {
             Animator.SetBool("IsShooting", true);
             ShootingSystem.Play();
@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour
 
                 StartCoroutine(SpawnTrail(trail, hit));
 
-                LastSHootTime = Time.time;
+                LastShootTime = Time.time;
             }
 
 
