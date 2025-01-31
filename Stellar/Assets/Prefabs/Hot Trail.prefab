@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3373316338334216497}
   - component: {fileID: 9061831953610288845}
+  - component: {fileID: -4935829993312201949}
   m_Layer: 1
   m_Name: Hot Trail
   m_TagString: Untagged
@@ -145,3 +146,15 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-4935829993312201949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8140270096972490269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220170192a3499c4ca7ffc6ffe36e5de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
