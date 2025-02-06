@@ -7,6 +7,7 @@ public class HitBox : MonoBehaviour
 {
     [SerializeField]
     private EnemyHealth enemyHealth;
+    public string part;
 
     void Start()
     {
@@ -23,12 +24,12 @@ public class HitBox : MonoBehaviour
     {
         int damage;
 
-        if(other.gameObject.tag == "bullet")
+        if(other.gameObject.tag == "Bullet")
         {
             damage = 10;
         }
         else { damage = 0; }
 
-        enemyHealth.TakeDamage(damage);
+        enemyHealth.TakeDamage(damage, part);
     }
 }

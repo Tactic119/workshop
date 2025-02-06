@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
-    
+    public string part;    
     void Start()
     {
         
@@ -17,8 +17,9 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    public void TakeDamage(int x)
+    public void TakeDamage(int x, string Part)
     {
         health -= x;
+        part = Part;
     }
 }

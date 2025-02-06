@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // take off
-        if (Input.GetKey(KeyCode.F) && !flying.airBorne && grounded == false && wallrunning == false && startHoverCooldown <= 0)
+        if (Input.GetKey(KeyCode.F) && !flying.airBorne && wallrunning == false && startHoverCooldown <= 0)
         {
             state = MovementState.hovering;
             flying.hovering = true;

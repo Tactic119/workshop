@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class target : MonoBehaviour
+public class destroyer : MonoBehaviour
 {
-    private float timer = 2f;
+    public float timer = 2f;
     
 
    

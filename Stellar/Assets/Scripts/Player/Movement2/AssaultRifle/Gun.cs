@@ -39,14 +39,14 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (LastShootTime + ShootDelay < Time.time)
+        if (LastShootTime + ShootDelay < Time.time && BulletSpawnPoint != null)
         {
             //Animator.SetBool("IsShooting", true);
 
             ShootingSystem.Play();
 
-            Vector3 direction = transform.forward; // = GetDirection();
-            TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, Quaternion.identity);
+            Vector3 direction = BulletSpawnPoint.transform.forward; 
+            TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, BulletSpawnPoint.rotation);
 
             if (Physics.Raycast(BulletSpawnPoint.position, direction, out RaycastHit hit, float.MaxValue, Mask))
             {
