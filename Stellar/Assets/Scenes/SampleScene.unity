@@ -545,6 +545,7 @@ GameObject:
   - component: {fileID: 27088667}
   - component: {fileID: 27088666}
   - component: {fileID: 27088668}
+  - component: {fileID: 27088669}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -592,6 +593,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUI: {fileID: 418870647}
+--- !u!114 &27088669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27088665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3236325e6907d44b48c1c9c795ba88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wingsuit: {fileID: 1581522841}
 --- !u!1 &32291738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,111 +2973,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135819922}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &136002595
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 136002599}
-  - component: {fileID: 136002598}
-  - component: {fileID: 136002597}
-  - component: {fileID: 136002596}
-  m_Layer: 0
-  m_Name: Cube (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &136002596
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136002595}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &136002597
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136002595}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &136002598
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136002595}
-  m_Mesh: {fileID: 3076543659198709218, guid: 2ec921c2166db4355a0d0d5ea1385ebe, type: 3}
---- !u!4 &136002599
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136002595}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.774, y: 4.309675, z: -13.138}
-  m_LocalScale: {x: 1.1697, y: 1.1697, z: 0.48822108}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &136323494
 GameObject:
   m_ObjectHideFlags: 0
@@ -3182,7 +3091,6 @@ GameObject:
   - component: {fileID: 141855888}
   - component: {fileID: 141855891}
   - component: {fileID: 141855890}
-  - component: {fileID: 141855889}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -3219,27 +3127,6 @@ Transform:
   - {fileID: 1791632229}
   m_Father: {fileID: 1709789190}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &141855889
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141855887}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &141855890
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8957,7 +8844,7 @@ Transform:
   m_GameObject: {fileID: 433807870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.51}
+  m_LocalPosition: {x: -0, y: 0, z: 0.595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17363,6 +17250,7 @@ MonoBehaviour:
   speed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  rayStart: {fileID: 0}
 --- !u!95 &768790825
 Animator:
   serializedVersion: 5
@@ -17401,7 +17289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &774700073
 Transform:
   m_ObjectHideFlags: 0
@@ -17443,6 +17331,7 @@ MonoBehaviour:
   speed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  rayStart: {fileID: 433807870}
 --- !u!95 &774700075
 Animator:
   serializedVersion: 5
@@ -22725,6 +22614,7 @@ MonoBehaviour:
   speed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  rayStart: {fileID: 0}
 --- !u!95 &1091593770
 Animator:
   serializedVersion: 5
@@ -26755,6 +26645,7 @@ MonoBehaviour:
   speed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  rayStart: {fileID: 433807870}
 --- !u!1 &1289175764
 GameObject:
   m_ObjectHideFlags: 0
@@ -34069,13 +33960,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1709789190}
   - component: {fileID: 1709789191}
+  - component: {fileID: 1709789192}
   m_Layer: 0
   m_Name: Katana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1709789190
 Transform:
   m_ObjectHideFlags: 0
@@ -34113,6 +34005,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1709789192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709789189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f027f744b35cfd438a58422ab55e3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawn: 0
+  State: 0
+  newState: 0
+  settingState: 0
+  settingStateTimer: 0
+  anim: {fileID: 0}
+  swingTimer: 0
+  comboTimer: 0
 --- !u!1 &1714850913
 GameObject:
   m_ObjectHideFlags: 0
@@ -38712,6 +38624,7 @@ MonoBehaviour:
   speed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  rayStart: {fileID: 0}
 --- !u!95 &1943912909
 Animator:
   serializedVersion: 5
@@ -42897,6 +42810,7 @@ MonoBehaviour:
   speed: 100
   BouncingBullets: 0
   BounceDistance: 10
+  rayStart: {fileID: 0}
 --- !u!95 &2109143243
 Animator:
   serializedVersion: 5
@@ -43464,6 +43378,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: 7b0bf709157e39549b635494ec8936a2, type: 2}
     - target: {fileID: 2344755136636993257, guid: a9e721e98037f1542bee512244412783, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2344755136636993257, guid: a9e721e98037f1542bee512244412783, type: 3}
       propertyPath: m_TagString
       value: PlayerModel
       objectReference: {fileID: 0}
@@ -43771,4 +43689,3 @@ SceneRoots:
   - {fileID: 1040105989}
   - {fileID: 556712384}
   - {fileID: 1202152231}
-  - {fileID: 136002599}

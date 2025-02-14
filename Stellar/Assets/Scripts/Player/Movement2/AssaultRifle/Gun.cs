@@ -27,6 +27,8 @@ public class Gun : MonoBehaviour
     private bool BouncingBullets;
     [SerializeField]
     private float BounceDistance = 10f;
+    [SerializeField]
+    private GameObject rayStart;
 
 
     private Animator Animator;
@@ -45,7 +47,7 @@ public class Gun : MonoBehaviour
 
             ShootingSystem.Play();
 
-            Vector3 direction = BulletSpawnPoint.transform.forward; 
+            Vector3 direction = AngleToTarget(); //BulletSpawnPoint.transform.forward
             TrailRenderer trail = Instantiate(BulletTrail, BulletSpawnPoint.position, BulletSpawnPoint.rotation);
 
             if (Physics.Raycast(BulletSpawnPoint.position, direction, out RaycastHit hit, float.MaxValue, Mask))
@@ -61,7 +63,47 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private Vector3 GetDirection()
+    public Vector3 AngleToTarget()
+    {
+        FindTarget(out Vector3 target1, out bool foundTarget1);
+
+        Vector3 positionA = BulletSpawnPoint.transform.position; // where bullet starts
+        Vector3 positionB = target1; // where bullet ends
+        bool foundTarget = foundTarget1;
+        Vector3 direction;
+
+        if(foundTarget)direction = positionB - positionA;
+        else direction = BulletSpawnPoint.transform.forward;
+
+        //float angle = Vector3.Angle(BulletSpawnPoint.transform.forward, direction);
+
+        return direction;
+    }
+
+    public void FindTarget(out Vector3 Target, out bool FoundTarget)
+    {
+        Vector3 target;
+        bool foundTarget;
+
+        RaycastHit hit;
+        if (Physics.Raycast(rayStart.transform.position, rayStart.transform.forward, out hit))
+        {
+            Debug.DrawLine(BulletSpawnPoint.position, hit.point, Color.blue);
+
+            target = hit.point;
+            foundTarget = true;
+        }
+        else
+        {
+            target = BulletSpawnPoint.transform.forward;
+            foundTarget = false;
+        }
+
+        Target = target;
+        FoundTarget = foundTarget;
+    }
+
+    private Vector3 GetDirection() // bullet spread
     {
         Vector3 direction = transform.forward;
 
