@@ -6,7 +6,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField]
-    private bool AddBulletSpread;
+    public bool AddBulletSpread;
     [SerializeField]
     private Vector3 BulletSpreadVariance = new Vector3(0.1f, 0.1f, 0.1f);
     [SerializeField]
@@ -30,6 +30,11 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject rayStart;
 
+    public int maxAmmo;
+    public int ammo;
+    public GameObject explosion;
+    public GameObject explosionEffects;
+
 
     private Animator Animator;
     private float LastShootTime;
@@ -37,11 +42,12 @@ public class Gun : MonoBehaviour
     private void Awake()
     {
         Animator = GetComponent<Animator>();
+        ammo = maxAmmo;
     }
 
     public void Shoot()
     {
-        if (LastShootTime + ShootDelay < Time.time && BulletSpawnPoint != null)
+        if (LastShootTime + ShootDelay < Time.time && BulletSpawnPoint != null && ammo >= 0 && gameObject.activeSelf)
         {
             //Animator.SetBool("IsShooting", true);
 
@@ -60,6 +66,7 @@ public class Gun : MonoBehaviour
             }
 
             LastShootTime = Time.time;
+            ammo -= 1;
         }
     }
 
@@ -74,8 +81,17 @@ public class Gun : MonoBehaviour
 
         if(foundTarget)direction = positionB - positionA;
         else direction = BulletSpawnPoint.transform.forward;
+        
+        if (AddBulletSpread)
+        {
+            direction += new Vector3(
+                Random.Range(-BulletSpreadVariance.x, BulletSpreadVariance.x),
+                Random.Range(-BulletSpreadVariance.y, BulletSpreadVariance.y),
+                Random.Range(-BulletSpreadVariance.z, BulletSpreadVariance.z)
+            );
 
-        //float angle = Vector3.Angle(BulletSpawnPoint.transform.forward, direction);
+            direction.Normalize();
+        }
 
         return direction;
     }
@@ -101,24 +117,6 @@ public class Gun : MonoBehaviour
 
         Target = target;
         FoundTarget = foundTarget;
-    }
-
-    private Vector3 GetDirection() // bullet spread
-    {
-        Vector3 direction = transform.forward;
-
-        if (AddBulletSpread)
-        {
-            direction += new Vector3(
-                Random.Range(-BulletSpreadVariance.x, BulletSpreadVariance.x),
-                Random.Range(-BulletSpreadVariance.y, BulletSpreadVariance.y),
-                Random.Range(-BulletSpreadVariance.z, BulletSpreadVariance.z)
-            );
-
-            direction.Normalize();
-        }
-
-        return direction;
     }
 
     private IEnumerator SpawnTrail(TrailRenderer Trail, Vector3 HitPoint, Vector3 HitNormal, float BounceDistance, bool MadeImpact)
@@ -168,6 +166,12 @@ public class Gun : MonoBehaviour
                         false
                     ));
                 }
+            }
+
+            if (gameObject.tag == "Cannon")
+            {
+                Instantiate(explosion, Trail.gameObject.transform.position, Quaternion.identity);
+                Instantiate(explosionEffects, Trail.gameObject.transform.position, Quaternion.identity);
             }
 
             Destroy(Trail.gameObject, Trail.time);

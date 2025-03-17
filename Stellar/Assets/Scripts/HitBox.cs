@@ -8,6 +8,7 @@ public class HitBox : MonoBehaviour
     [SerializeField]
     private EnemyHealth enemyHealth;
     public string part;
+    
 
     void Start()
     {
