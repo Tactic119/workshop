@@ -104,7 +104,7 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayStart.transform.position, rayStart.transform.forward, out hit))
         {
-            Debug.DrawLine(BulletSpawnPoint.position, hit.point, Color.blue);
+            //Debug.DrawLine(BulletSpawnPoint.position, hit.point, Color.blue);
 
             target = hit.point;
             foundTarget = true;
