@@ -26476,13 +26476,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  offset:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
   rayStart: {fileID: 0}
-  armLength: 0
   attackCooldown: 0
 --- !u!1 &1078878838
 GameObject:
@@ -31091,6 +31085,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252678506}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1255184927 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
+  m_PrefabInstance: {fileID: 1293195490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1260984581
 GameObject:
   m_ObjectHideFlags: 0
@@ -31683,35 +31682,35 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 5078059284617711460}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.872559
+      value: -0.43868637
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2918949
+      value: -0.26960397
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.1127234
+      value: -1.906867
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31719,7 +31718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5ee2b3e73e556c4abac384f8c4d1d86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -51837,6 +51836,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6428385342777463401, guid: a9e721e98037f1542bee512244412783, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1937262426}
+    - targetCorrespondingSourceObject: {fileID: 1297589471888058490, guid: a9e721e98037f1542bee512244412783, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1255184927}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5125218953650473371, guid: a9e721e98037f1542bee512244412783, type: 3}
       insertIndex: -1
@@ -51886,6 +51888,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &5078059284617711460 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1297589471888058490, guid: a9e721e98037f1542bee512244412783, type: 3}
+  m_PrefabInstance: {fileID: 5078059284617711457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8443134106638924039 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5125218953650473371, guid: a9e721e98037f1542bee512244412783, type: 3}
@@ -52067,4 +52074,3 @@ SceneRoots:
   - {fileID: 2137019021}
   - {fileID: 1202152231}
   - {fileID: 1076397426}
-  - {fileID: 1293195490}

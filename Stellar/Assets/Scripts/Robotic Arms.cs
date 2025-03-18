@@ -5,18 +5,14 @@ using UnityEngine;
 public class RoboticArms : MonoBehaviour
 {
     public GameObject[] arm = new GameObject[4];
-    public Vector3[] offset = new Vector3[4];
 
     public GameObject rayStart;
-    public float armLength;
+    //public float armLength;
     public float attackCooldown;
 
     void Start()
     {
-        offset[0] = new Vector3(-10,+10, 0);
-        offset[1] = new Vector3(+10,+10, 0);
-        offset[2] = new Vector3(-10,-10, 0);
-        offset[3] = new Vector3(+10,-10, 0);
+        
     }
 
     
@@ -53,8 +49,8 @@ public class RoboticArms : MonoBehaviour
         {
             target = hit.point;
             distance = Vector3.Distance(rayStart.transform.position, target);
-            if (distance > armLength) distance = armLength;
-            target += offset[armNumber];
+            //if (distance > armLength) distance = armLength;
+            //target += offset[armNumber];
         }
 
     }
