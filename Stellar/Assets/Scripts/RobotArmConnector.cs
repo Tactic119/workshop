@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RobotArmConnector : MonoBehaviour
 {
+    public GameObject IKTarget;
     public GameObject head;
     public GameObject tail;
     public GameObject innertail;
@@ -21,9 +22,9 @@ public class RobotArmConnector : MonoBehaviour
     
     void Update()
     {
-        if(Vector3.Distance(head.transform.position, tail.transform.position) > distance)
+        if(Vector3.Distance(IKTarget.transform.position, tail.transform.position) > distance)
         {
-            tail.transform.position = Vector3.MoveTowards(tail.transform.position, head.transform.position, speed * Time.deltaTime);
+            tail.transform.position = Vector3.MoveTowards(tail.transform.position, IKTarget.transform.position, speed * Time.deltaTime);
         }
 
         follow.transform.position = innertail.transform.position;
