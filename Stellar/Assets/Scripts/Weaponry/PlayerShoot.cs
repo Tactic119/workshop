@@ -12,6 +12,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private Gun mac10;
     public Mac10 macScript;
+    public GameObject macObj;
 
 
     public void Update()
@@ -25,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
         {
             cannon.Shoot();
         }
-        if(Input.GetMouseButton(0) && mac10 != null && macScript.reloadTimer <= 0)
+        if(Input.GetMouseButton(0) && mac10 != null && macScript.reloadTimer <= 0 && macObj.activeInHierarchy)
         {
             if(macScript.gunScript.ammo > 0)
             {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mac10 : MonoBehaviour
@@ -10,6 +11,7 @@ public class Mac10 : MonoBehaviour
     public float aimCounter;
     public float reloadTimer;
     public float shootTimer;
+    public bool active;
 
     public Gun gunScript;
     Animator anim;
@@ -33,7 +35,7 @@ public class Mac10 : MonoBehaviour
         {
             State = 0;
         }
-        if(Input.GetKey(KeyCode.R) && gunScript.ammo < gunScript.maxAmmo && reloadTimer <= 0)
+        if (Input.GetKey(KeyCode.R) && gunScript.ammo < gunScript.maxAmmo && reloadTimer <= 0)
         {
             reload();
         }

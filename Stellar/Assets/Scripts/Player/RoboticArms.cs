@@ -18,13 +18,13 @@ public class RoboticArms : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Interact();
+            //Interact();
         }
     }
 
     public void Interact()
     {
-        GameObject target;
+        //GameObject target;
 
         RaycastHit hit;
         if (Physics.Raycast(rayStart.transform.position, rayStart.transform.forward, out hit))

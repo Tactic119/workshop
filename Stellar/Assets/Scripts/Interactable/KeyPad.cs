@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact : MonoBehaviour
+public class KeyPad : Interactable
 {
     
     void Start()
@@ -14,5 +14,10 @@ public class Interact : MonoBehaviour
     void Update()
     {
         
+    }
+
+    protected override void Interact()
+    {
+        Debug.Log("Interacted with " + gameObject.name);
     }
 }

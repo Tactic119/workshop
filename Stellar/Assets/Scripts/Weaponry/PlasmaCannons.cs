@@ -13,6 +13,7 @@ public class PlasmaCannons : MonoBehaviour
     public GameObject target;
     public GameObject plasmaMissile;
     public Transform PMSpawn;
+    public GameObject cannon;
 
 
     void Start()
@@ -23,7 +24,7 @@ public class PlasmaCannons : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKey(KeyCode.E) && shootCoolDown <= 0)
+        if(Input.GetKey(KeyCode.E) && shootCoolDown <= 0 && cannon.activeInHierarchy)
         {
             FindTarget();
             readyToFire = true;
