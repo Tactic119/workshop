@@ -15,5 +15,5 @@ public class TypewriterEffect : MonoBehaviour
     // Basic Typewriter Functionality
     private int _currentVisibileCHaracterIndex;
 
-
+    //
 }
