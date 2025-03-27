@@ -19,7 +19,6 @@ public class Knight : MonoBehaviour
     public Vector3 target;
     public float distance;
     public float range;
-    public bool inRange;
     public int state = 0;
 
     public GameObject leftLeg;
@@ -51,9 +50,8 @@ public class Knight : MonoBehaviour
             Destroy(gameObject);
         }
 
-        FindDistance();
 
-        if (inRange)
+        if (FindDistance() == false)
         {
             state = 0;
         }
@@ -69,21 +67,26 @@ public class Knight : MonoBehaviour
         
         transform.LookAt(target);
 
-        if(!inRange)transform.position = Vector3.MoveTowards(transform.position, target, speed);
+        
+
+        if(FindDistance() == true)transform.position = Vector3.MoveTowards(transform.position, target, speed);
     }
 
-    public void FindDistance()
+    public bool FindDistance()
     {
+        bool inRange;
         float distance = Vector3.Distance(gameObject.transform.position, playerPos.position);
-
+        
         if (distance > range) 
         {
             inRange = false;
         }
-        else if (distance < range)
+        else
         {
             inRange = true;
         }
+
+        return inRange;
     }
 
     public void CheckPartHealth()
