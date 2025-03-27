@@ -51547,11 +51547,11 @@ MonoBehaviour:
   headHealth: 100
   rightArmHealth: 100
   leftArmHealth: 100
-  speed: 0.01
+  speed: 0.015
   playerPos: {fileID: 1937262426}
   target: {x: 0, y: 0, z: 0}
   distance: 0
-  range: 2.5
+  range: 20
   state: 0
   leftLeg: {fileID: 1054699754}
   rightLeg: {fileID: 1318933981}
