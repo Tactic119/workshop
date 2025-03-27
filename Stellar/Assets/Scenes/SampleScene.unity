@@ -1332,6 +1332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUI: {fileID: 418870647}
+  playerUI2: {fileID: 0}
 --- !u!114 &27088669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29459,63 +29460,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658682762}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &661736896
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.253883
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7289987
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.841591
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
-      propertyPath: m_Name
-      value: TankDrone6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4e57b4e463e83944193fa94714919eb8, type: 3}
 --- !u!1 &663220823
 GameObject:
   m_ObjectHideFlags: 0
@@ -43529,6 +43473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Use Keypad
+  door: {fileID: 0}
 --- !u!65 &991071420
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51955,7 +51900,6 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   distance: 0
   range: 2.5
-  inRange: 0
   state: 0
   leftLeg: {fileID: 1054699754}
   rightLeg: {fileID: 1318933981}
@@ -93419,4 +93363,3 @@ SceneRoots:
   - {fileID: 984508037}
   - {fileID: 1461095229}
   - {fileID: 1401836849}
-  - {fileID: 661736896}
