@@ -13,27 +13,28 @@ public class TankDrone : MonoBehaviour
     Vector3 targetPosition;
     private float speed;
     public bool hacked;
-    
+
     void Start()
     {
         atPosition = true;
-        speed = 2f;
-        state = 0;
+        speed = 1f;
+        state = 1;
         hacked = false;
     }
 
-    
+
     void Update()
     {
         if (state == 0)
             Idle();
-        else if(state == 1)
+        else if (state == 1)
             Wandering();
         else if (state == 2)
             MoveToTarget();
         else if (state == 3)
             AttackTarget();
 
+        AvoidObstacles();
 
     }
 
@@ -49,14 +50,15 @@ public class TankDrone : MonoBehaviour
 
     public void Wandering()
     {
-        if(atPosition == false)
+        if (atPosition == true)
         {
             NewPosition();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        transform.LookAt(targetPosition);
 
-        if(Mathf.Abs(transform.position.x - targetPosition.x) <= 0.5f && Mathf.Abs(transform.position.z - targetPosition.z) <= 0.5f) // within 0.5 of target on x and z axis
+        if (Mathf.Abs(transform.position.x - targetPosition.x) <= 0.5f && Mathf.Abs(transform.position.z - targetPosition.z) <= 0.5f) // within 0.5 of target on x and z axis
         {
             atPosition = true;
         }
@@ -69,7 +71,7 @@ public class TankDrone : MonoBehaviour
 
         targetPosition = new Vector3(targetX, tankDrone.transform.position.y, targetZ);
 
-
+        atPosition = false;
     }
 
     public void MoveToTarget()
@@ -79,6 +81,13 @@ public class TankDrone : MonoBehaviour
 
     public void AttackTarget()
     {
+
+    }
+
+    public void AvoidObstacles()
+    {
+
+
 
     }
 }

@@ -11,6 +11,6 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         playerUI.SetActive(true);
-        playerUI2.SetActive(true);
+        //playerUI2.SetActive(true);
     }
 }
