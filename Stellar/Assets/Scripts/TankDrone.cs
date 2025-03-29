@@ -15,7 +15,6 @@ public class TankDrone : MonoBehaviour
     private Vector3 enemyPosition;
     public float speed;
     public bool hacked;
-
     public float sightDistance;
     public float fieldOfView;
     public GameObject Player;
@@ -25,6 +24,10 @@ public class TankDrone : MonoBehaviour
     public float attackDistance;
     public float gunAngle;
     public GameObject gunRotation;
+    bool canShoot;
+    public GameObject gunBarrel;
+    public Animator anim;
+    Rigidbody rb;
 
     void Start()
     {
@@ -34,14 +37,20 @@ public class TankDrone : MonoBehaviour
         hacked = false;
         foundTarget = false;
         agroTimer = 0f;
-        attackTimer = 0f;
+        attackTimer = 1f;
+        canShoot = false;
 
-        sightDistance = 7f;
+        sightDistance = 10f;
         fieldOfView = 60f;
-        attackDistance = 3.5f;
+        attackDistance = 1.5f;
 
         gunAngle = 0f;
-        //gunRotation.transform.rotation = new Vector3(gunRotation.transform.rotation.x, gunRotation.transform.rotation.y, gunAngle);
+        gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
+
+        anim = GetComponent<Animator>();
+        anim.SetInteger("State", state);
+
+        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -65,6 +74,11 @@ public class TankDrone : MonoBehaviour
             state = 1;
             foundTarget = false;
         }
+
+        
+
+        
+
     }
 
     public void Search()
@@ -87,6 +101,7 @@ public class TankDrone : MonoBehaviour
                 if (state == 1)
                 {
                     state = 2;
+                    anim.SetInteger("State", state);
                 }
             }
         }
@@ -129,9 +144,21 @@ public class TankDrone : MonoBehaviour
         FindEnemyPosition();
 
         if (Vector3.Distance(transform.position, enemyPosition) > attackDistance) transform.position = Vector3.MoveTowards(transform.position, enemyPosition, speed * Time.deltaTime);
-        else if (Vector3.Distance(transform.position, enemyPosition) <= attackDistance) state = 3;
+        else if (Vector3.Distance(transform.position, enemyPosition) <= attackDistance)
+        {
+            state = 3;
+        }
 
         transform.LookAt(enemyPosition);
+
+        //gunAngle = Vector3.Angle(transform.position, enemyPosition);
+        //gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
+
+        //gunAngle = Vector3.Angle(gunBarrel.transform.position, enemyPosition);
+        //gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
+
+
+        //gunRotation.transform.LookAt(enemyPosition);
     }
 
     public void FindEnemyPosition()
@@ -142,7 +169,26 @@ public class TankDrone : MonoBehaviour
 
     public void AttackTarget()
     {
+        if (canShoot == false)
+        {
+            attackTimer -= Time.deltaTime;
+            if (attackTimer <= 0) canShoot = true;
+        }
+        if (canShoot == true) 
+        {
+            anim.SetInteger("State", state);
+            canShoot = false;
+            attackTimer = 1f;
 
+            rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
+            rb.AddForce(-transform.forward * 15f, ForceMode.Impulse);
+
+            state = 1;
+            anim.SetInteger("State", state);
+        }
+
+        
+        
     }
 
     public void AvoidObstacles()
