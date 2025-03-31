@@ -150,15 +150,6 @@ public class TankDrone : MonoBehaviour
         }
 
         transform.LookAt(enemyPosition);
-
-        //gunAngle = Vector3.Angle(transform.position, enemyPosition);
-        //gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
-
-        //gunAngle = Vector3.Angle(gunBarrel.transform.position, enemyPosition);
-        //gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
-
-
-        //gunRotation.transform.LookAt(enemyPosition);
     }
 
     public void FindEnemyPosition()
@@ -178,7 +169,7 @@ public class TankDrone : MonoBehaviour
         {
             anim.SetInteger("State", state);
             canShoot = false;
-            attackTimer = 1f;
+            attackTimer = 0.7f;
 
             rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
             rb.AddForce(-transform.forward * 15f, ForceMode.Impulse);
@@ -186,9 +177,6 @@ public class TankDrone : MonoBehaviour
             state = 1;
             anim.SetInteger("State", state);
         }
-
-        
-        
     }
 
     public void AvoidObstacles()
