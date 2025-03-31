@@ -8,26 +8,45 @@ public class TankDrone : MonoBehaviour
 {
     // 0 - idle, 1 - wandering, 2 - moving to target, 3 - attacking
 
+    [Header("Movement")]
     public GameObject tankDrone;
     public int state;
-    public bool atPosition;
+    private bool atPosition;
     private Vector3 targetPosition;
     private Vector3 enemyPosition;
     public float speed;
     public bool hacked;
-    public float sightDistance;
-    public float fieldOfView;
-    public GameObject Player;
+
+    [Header("Enemy Detection")]
+    private float sightDistance;
+    private float fieldOfView;
     public bool foundTarget;
     public float agroTimer;
+    private float agroCooldown;
+
+    [Header("Attacking")]
+    public GameObject Player;
     public float attackTimer;
     public float attackDistance;
     public float gunAngle;
     public GameObject gunRotation;
     bool canShoot;
     public GameObject gunBarrel;
-    public Animator anim;
-    Rigidbody rb;
+    private Animator anim;
+    private Rigidbody rb;
+
+    [Header("Audio")]
+    public AudioPlayer audioPlayer;
+    public AudioSource audioSource;
+    public AudioClip shootNoise;
+
+    [Header("Health")]
+    public GameObject tankGun;
+    public GameObject body;
+    public GameObject treads;
+    public int health;
+    public int treadsHealth;
+    public int tankGunHealth;
 
     void Start()
     {
@@ -37,12 +56,16 @@ public class TankDrone : MonoBehaviour
         hacked = false;
         foundTarget = false;
         agroTimer = 0f;
-        attackTimer = 1f;
+        attackTimer = 0.75f;
         canShoot = false;
 
         sightDistance = 10f;
         fieldOfView = 60f;
         attackDistance = 1.5f;
+
+        health = 500;
+        treadsHealth = health / 2;
+        tankGunHealth = health / 2;
 
         gunAngle = 0f;
         gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
@@ -75,7 +98,8 @@ public class TankDrone : MonoBehaviour
             foundTarget = false;
         }
 
-        
+        if(agroCooldown > 0)
+            agroCooldown -= Time.deltaTime;
 
         
 
@@ -98,7 +122,7 @@ public class TankDrone : MonoBehaviour
 
                 foundTarget = true;
                 agroTimer = 5f;
-                if (state == 1)
+                if (state == 1 && agroCooldown <= 0)
                 {
                     state = 2;
                     anim.SetInteger("State", state);
@@ -169,11 +193,16 @@ public class TankDrone : MonoBehaviour
         {
             anim.SetInteger("State", state);
             canShoot = false;
-            attackTimer = 0.7f;
+            attackTimer = 0.75f;
+
+            audioPlayer.PlayClipOnce(shootNoise, audioSource);
 
             rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
             rb.AddForce(-transform.forward * 15f, ForceMode.Impulse);
 
+            atPosition = false;
+            foundTarget = false;
+            agroCooldown = 1.5f;
             state = 1;
             anim.SetInteger("State", state);
         }
@@ -184,5 +213,21 @@ public class TankDrone : MonoBehaviour
 
 
 
+    }
+
+    public void TakeDamage(int damage, string part)
+    {
+        if(part == "TankGun")
+        {
+
+        }
+        if (part == "Body")
+        {
+
+        }
+        if (part == "Treads")
+        {
+
+        }
     }
 }

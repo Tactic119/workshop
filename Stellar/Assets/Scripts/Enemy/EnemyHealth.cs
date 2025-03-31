@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
-    public string part;    
+    private string part;    
+
     void Start()
     {
         

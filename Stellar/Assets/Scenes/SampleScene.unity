@@ -44831,12 +44831,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8443134106638924039}
     - target: {fileID: 1725583851531535036, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      propertyPath: shootNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
+    - target: {fileID: 1725583851531535036, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      propertyPath: audioPlayer
+      value: 
+      objectReference: {fileID: 1740490627}
+    - target: {fileID: 1725583851531535036, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1599770018}
+    - target: {fileID: 1725583851531535036, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
       propertyPath: gunRotation
       value: 
       objectReference: {fileID: 395803090}
     - target: {fileID: 1725583851531535036, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
       propertyPath: attackDistance
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155103344272510656, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      propertyPath: m_Name
+      value: TankGun
       objectReference: {fileID: 0}
     - target: {fileID: 5718983500313784460, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44902,6 +44918,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6498285718757952343, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1599770018}
+    - targetCorrespondingSourceObject: {fileID: 6498285718757952343, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1599770022}
+    - targetCorrespondingSourceObject: {fileID: 2155103344272510656, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1614771274}
+    - targetCorrespondingSourceObject: {fileID: 6074892058158633876, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2067072350}
+    - targetCorrespondingSourceObject: {fileID: 5331753633760827928, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1759234344}
   m_SourcePrefab: {fileID: 100100000, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
 --- !u!1 &1044032925
 GameObject:
@@ -51466,7 +51494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  part: 
 --- !u!114 &1202152233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69389,6 +69416,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1599770019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1725583851531535036, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+  m_PrefabInstance: {fileID: 1043045094}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599770006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21257733e6b180942956c1cbd24da32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1599770022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599770006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f16bd273cd4ac48abae8d3810a04f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
 --- !u!1 &1601186273
 GameObject:
   m_ObjectHideFlags: 0
@@ -69864,6 +69915,25 @@ Transform:
   - {fileID: 1623910734}
   m_Father: {fileID: 1340614148}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1614771269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2155103344272510656, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+  m_PrefabInstance: {fileID: 1043045094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1614771274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614771269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e820ba568ba782c47ad9986e7dfbb94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankDrone: {fileID: 1599770019}
+  part: TankGun
 --- !u!1 &1615900964
 GameObject:
   m_ObjectHideFlags: 0
@@ -73821,7 +73891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1599770018}
-  clip: {fileID: 8300000, guid: 7fa6c3e80ad6fb74dbbf6a5775ece131, type: 3}
+  clip: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
 --- !u!81 &1740490628
 AudioListener:
   m_ObjectHideFlags: 0
@@ -74543,6 +74613,25 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.03098602, y: 0.103986084, z: 0.05014253}
     m_Extent: {x: 0.009305773, y: 0.008774046, z: 0.0107001625}
   m_DirtyAABB: 0
+--- !u!1 &1759234339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5331753633760827928, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+  m_PrefabInstance: {fileID: 1043045094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1759234344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759234339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e820ba568ba782c47ad9986e7dfbb94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankDrone: {fileID: 1599770019}
+  part: Treads
 --- !u!1 &1760445203
 GameObject:
   m_ObjectHideFlags: 0
@@ -89036,6 +89125,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066344534}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2067072345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6074892058158633876, guid: 1eb019687f2d40c43bf3d005b82c10fb, type: 3}
+  m_PrefabInstance: {fileID: 1043045094}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2067072350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067072345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e820ba568ba782c47ad9986e7dfbb94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankDrone: {fileID: 1599770019}
+  part: Body
 --- !u!1 &2068406263
 GameObject:
   m_ObjectHideFlags: 0

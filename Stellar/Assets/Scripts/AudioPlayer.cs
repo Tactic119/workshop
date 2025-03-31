@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroneAudio : MonoBehaviour
+public class AudioPlayer : MonoBehaviour
 {
     public AudioSource source;
     public AudioClip clip;
@@ -19,5 +19,15 @@ public class DroneAudio : MonoBehaviour
         {
             source.PlayOneShot(clip);
         }
+    }
+
+    public void PlayClipOnce(AudioClip clip1, AudioSource source1)
+    {
+        source1.PlayOneShot(clip1);
+    }
+
+    public void PlayClipLoop(AudioClip clip1, AudioSource source1, float clipLength)
+    {
+
     }
 }
