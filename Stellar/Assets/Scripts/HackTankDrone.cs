@@ -18,11 +18,11 @@ public class HackTankDrone : Interactable
     {
         if (hackable)
         {
-            //promptMessage = "Hack [E]";
+            promptMessage = "Hack [E]";
         }
         else
         {
-            //promptMessage = "";
+            promptMessage = "";
         }
     }
 

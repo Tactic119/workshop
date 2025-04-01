@@ -52,6 +52,8 @@ public class TankDrone : MonoBehaviour
     public GameObject stand2;
 
     private Gun tankGunScript;
+
+    public GameObject hackField;
     private HackTankDrone hack;
 
     void Start()
@@ -67,7 +69,7 @@ public class TankDrone : MonoBehaviour
 
         sightDistance = 10f;
         fieldOfView = 60f;
-        attackDistance = 3f;
+        attackDistance = 2.5f;
 
         health = 500;
         treadsHealth = 300;
@@ -83,7 +85,7 @@ public class TankDrone : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         tankGunScript = GetComponent<Gun>();
-        hack = GetComponent<HackTankDrone>();
+        hack = hackField.GetComponent<HackTankDrone>();
         hack.hackable = false;
     }
 
