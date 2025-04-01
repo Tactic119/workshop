@@ -13,6 +13,7 @@ TagManager:
   - pewpew
   - Bullet
   - Cannon
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class TankDrone : MonoBehaviour
@@ -46,7 +48,11 @@ public class TankDrone : MonoBehaviour
     public GameObject treads;
     public int health;
     public int treadsHealth;
-    public int tankGunHealth;
+    public GameObject stand1;
+    public GameObject stand2;
+
+    private Gun tankGunScript;
+    private HackTankDrone hack;
 
     void Start()
     {
@@ -61,11 +67,13 @@ public class TankDrone : MonoBehaviour
 
         sightDistance = 10f;
         fieldOfView = 60f;
-        attackDistance = 1.5f;
+        attackDistance = 3f;
 
         health = 500;
-        treadsHealth = health / 2;
-        tankGunHealth = health / 2;
+        treadsHealth = 300;
+
+        stand1.SetActive(true);
+        stand2.SetActive(false);
 
         gunAngle = 0f;
         gunRotation.transform.localRotation = Quaternion.Euler(90, 0, gunAngle);
@@ -74,6 +82,9 @@ public class TankDrone : MonoBehaviour
         anim.SetInteger("State", state);
 
         rb = GetComponent<Rigidbody>();
+        tankGunScript = GetComponent<Gun>();
+        hack = GetComponent<HackTankDrone>();
+        hack.hackable = false;
     }
 
 
@@ -92,7 +103,7 @@ public class TankDrone : MonoBehaviour
 
         if (agroTimer > 0)
             agroTimer -= Time.deltaTime;
-        else if (agroTimer <= 0)
+        else if (agroTimer <= 0 && state != 0)
         {
             state = 1;
             foundTarget = false;
@@ -100,9 +111,6 @@ public class TankDrone : MonoBehaviour
 
         if(agroCooldown > 0)
             agroCooldown -= Time.deltaTime;
-
-        
-
     }
 
     public void Search()
@@ -195,6 +203,8 @@ public class TankDrone : MonoBehaviour
             canShoot = false;
             attackTimer = 0.75f;
 
+            tankGunScript.Shoot();
+
             audioPlayer.PlayClipOnce(shootNoise, audioSource);
 
             rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
@@ -217,17 +227,27 @@ public class TankDrone : MonoBehaviour
 
     public void TakeDamage(int damage, string part)
     {
-        if(part == "TankGun")
+        if(part == "TankGun" || part == "Body")
         {
-
+            health -= damage;
         }
-        if (part == "Body")
+        else if (part == "Treads")
         {
-
+            treadsHealth -= damage;
+            health -= damage;
         }
-        if (part == "Treads")
+
+        if(treadsHealth <= 0)
         {
-
+            state = 0;
+            stand1.SetActive(false);
+            stand2.SetActive(true);
+            hack.hackable = true;
         }
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
+
+
 }

@@ -46,4 +46,5 @@ public class PlayerShoot : MonoBehaviour
         else { mac10.AddBulletSpread = false; }
 
     }
+
 }
