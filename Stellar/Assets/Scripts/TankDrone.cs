@@ -56,6 +56,8 @@ public class TankDrone : MonoBehaviour
     public GameObject hackField;
     private HackTankDrone hack;
 
+    private TankDroneDialogue dialogue;
+
     void Start()
     {
         atPosition = true;
@@ -87,6 +89,9 @@ public class TankDrone : MonoBehaviour
         tankGunScript = GetComponent<Gun>();
         hack = hackField.GetComponent<HackTankDrone>();
         hack.hackable = false;
+        hackField.SetActive(false);
+
+        dialogue = GetComponent<TankDroneDialogue>();
     }
 
 
@@ -244,6 +249,7 @@ public class TankDrone : MonoBehaviour
             state = 0;
             stand1.SetActive(false);
             stand2.SetActive(true);
+            hackField.SetActive(true);
             hack.hackable = true;
         }
 
