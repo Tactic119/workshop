@@ -70150,7 +70150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: 
-  worldText: {fileID: 546452391}
+  worldText: {fileID: 0}
+  delay: 0.1
+  newMessage: 
 --- !u!1 &1601186273
 GameObject:
   m_ObjectHideFlags: 0

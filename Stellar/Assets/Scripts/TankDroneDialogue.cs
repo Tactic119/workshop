@@ -6,11 +6,19 @@ using TMPro;
 public class TankDroneDialogue : MonoBehaviour
 {
     public string text;
-    public TMP_Text worldText;
+    public TextMeshPro worldText;
+    public float delay = 0.1f;
+    private string fullText;
+
+    public string newMessage;
 
     void Start()
     {
         text = "";
+
+        newMessage = "ouweg/lewhbvelbvelvhbelvhel.vhelkv";
+
+        StartMessage(newMessage);
     }
 
     
@@ -19,9 +27,20 @@ public class TankDroneDialogue : MonoBehaviour
         worldText.text = text;
     }
 
-    public void SetMessage(string newMessage)
+    public void StartMessage(string message)
     {
-        text = newMessage;
+        worldText.text = message;
+        fullText = text;
+        text = "";
+        StartCoroutine(TypeText());
+    }
 
+    IEnumerator TypeText()
+    {
+        foreach (char letter in fullText)
+        {
+            text += letter;
+            yield return new WaitForSeconds(delay);
+        }
     }
 }

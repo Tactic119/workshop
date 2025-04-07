@@ -1,19 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-
-[RequireComponent(typeof(TMP_Text))]
+using UnityEngine.UI;
+using System.Collections;
+using TMPro;
 
 public class TypewriterEffect : MonoBehaviour
 {
-    // Only for prototyping
-    [Header("Text String")]
-    [SerializeField] private string testText;
+    public TextMeshPro uiText;
+    public float delay = 0.1f;
+    private string fullText;
 
+    void Start()
+    {
+        fullText = uiText.text;
+        uiText.text = "";
+        StartCoroutine(TypeText());
+    }
 
-    // Basic Typewriter Functionality
-    private int _currentVisibileCHaracterIndex;
-
-    //
+    IEnumerator TypeText()
+    {
+        foreach (char letter in fullText)
+        {
+            uiText.text += letter;
+            yield return new WaitForSeconds(delay);
+        }
+    }
 }
