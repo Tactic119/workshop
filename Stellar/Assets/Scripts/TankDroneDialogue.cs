@@ -7,10 +7,14 @@ public class TankDroneDialogue : MonoBehaviour
 {
     public string text;
     public TMP_Text worldText;
+    public float delay = 0.2f;
+    private string fullText;
 
     void Start()
     {
-        text = "";
+        text = "Hello";
+
+        StartMessage("I WIll BRING DEATH UPON YOU");
     }
 
     
@@ -19,9 +23,20 @@ public class TankDroneDialogue : MonoBehaviour
         worldText.text = text;
     }
 
-    public void SetMessage(string newMessage)
+    public void StartMessage(string newText)
     {
-        text = newMessage;
+        text = newText;
+        fullText = text;
+        text = "";
+        StartCoroutine(TypeText());
+    }
 
+    IEnumerator TypeText()
+    {
+        foreach (char letter in fullText)
+        {
+            text += letter;
+            yield return new WaitForSeconds(delay);
+        }
     }
 }
