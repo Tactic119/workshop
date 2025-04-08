@@ -92,6 +92,7 @@ public class TankDrone : MonoBehaviour
         hackField.SetActive(false);
 
         dialogue = GetComponent<TankDroneDialogue>();
+        dialogue.StartMessage(" Searching");
     }
 
 
@@ -141,6 +142,7 @@ public class TankDrone : MonoBehaviour
                 {
                     state = 2;
                     anim.SetInteger("State", state);
+                    dialogue.StartMessage("Attack");
                 }
             }
         }
@@ -206,6 +208,8 @@ public class TankDrone : MonoBehaviour
         }
         if (canShoot == true) 
         {
+            dialogue.StartMessage("Fire", 0.1f);
+
             anim.SetInteger("State", state);
             canShoot = false;
             attackTimer = 0.75f;
@@ -251,6 +255,8 @@ public class TankDrone : MonoBehaviour
             stand2.SetActive(true);
             hackField.SetActive(true);
             hack.hackable = true;
+            dialogue.StartMessage("Explodeing in ...");
+            dialogue.ExplodeCountDown();
         }
 
         if (health <= 0)
